@@ -3,84 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>给最亲爱的姑婆</title>
+    <title>致最亲爱的姑婆</title>
     <style>
-        body { background-color: #fff9f0; margin: 0; overflow: hidden; height: 100vh; width: 100vw; font-family: "Microsoft YaHei", sans-serif; }
+        body { background-color: #fffafb; margin: 0; overflow: hidden; height: 100vh; width: 100vw; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
         
-        /* 弹窗样式 */
-        .window { position: absolute; width: 95px; height: 55px; background: #fff; border: 1.5px solid #d4af37; border-radius: 8px; box-shadow: 0 4px 10px rgba(184, 134, 11, 0.2); display: flex; flex-direction: column; animation: pop 0.4s ease-out forwards; opacity: 0; pointer-events: none; }
-        .title-bar { height: 14px; background: #c0392b; display: flex; justify-content: flex-end; align-items: center; padding: 0 5px; }
-        .dot { width: 5px; height: 5px; background: #f1c40f; border-radius: 50%; margin-left: 3px; }
-        .content { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 11px; color: #c0392b; font-weight: bold; text-align: center; padding: 2px; }
+        /* 弹窗样式：改为更优雅的樱花粉和白色 */
+        .window { position: absolute; width: 100px; height: 50px; background: #fff; border: 1px solid #ffb6c1; border-radius: 12px; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3); display: flex; flex-direction: column; animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; pointer-events: none; }
+        .title-bar { height: 10px; background: #ffb6c1; border-radius: 10px 10px 0 0; }
+        .content { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 13px; color: #d63384; font-weight: 500; text-align: center; }
         
         @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         /* 引导封面 */
-        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff9f0; z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .start-btn { padding: 15px 40px; font-size: 20px; background: #c0392b; color: white; border: none; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(192,57,43,0.3); transition: transform 0.2s; }
-        .start-btn:active { transform: scale(0.95); }
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fffafb; z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .start-btn { padding: 12px 35px; font-size: 18px; background: #ffb6c1; color: white; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 10px rgba(255,182,193,0.5); }
 
         /* 结尾的大卡片 */
-        #final-msg { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: white; padding: 25px; border-radius: 15px; border: 4px solid #c0392b; text-align: center; display: none; width: 75%; box-shadow: 0 0 40px rgba(192, 57, 43, 0.4); }
+        #final-msg { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: white; padding: 30px; border-radius: 20px; border: 2px solid #ffb6c1; text-align: center; display: none; width: 80%; box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4); }
     </style>
 </head>
 <body>
 
 <audio id="bgm" loop>
-    <source src="https://music.163.com/song/media/outer/url?id=1373511119.mp3" type="audio/mpeg">
+    <source src="https://music.163.com/song/media/outer/url?id=1436702738.mp3" type="audio/mpeg">
 </audio>
 
 <div id="overlay">
-    <div style="font-size: 50px; margin-bottom: 20px;">🧧</div>
-    <button class="start-btn" onclick="startExperience()">点开姑婆的惊喜</button>
-    <p style="color: #c0392b; margin-top: 15px; font-size: 14px;">( 记得打开声音哦 )</p>
+    <div style="font-size: 40px; margin-bottom: 20px;">🌸</div>
+    <button class="start-btn" onclick="startExperience()">姑婆，请查收惊喜</button>
 </div>
 
 <div id="final-msg">
-    <h2 style="color: #c0392b;">亲爱的姑婆 ❤️</h2>
-    <p style="font-size: 16px; color: #333; line-height: 1.8;">
-        祝您：<br>
-        <b style="font-size: 20px;">福如东海，寿比南山！</b><br>
-        笑口常开，身体康健！
+    <h2 style="color: #d63384; margin-bottom: 15px;">亲爱的姑婆 ✨</h2>
+    <p style="font-size: 16px; color: #555; line-height: 1.8;">
+        愿您：<br>
+        <b style="font-size: 18px; color: #d63384;">眼里有光，芳华永驻！</b><br>
+        永远优雅，永远自在，<br>
+        每一天都开心漂亮！❤️
     </p>
 </div>
 
 <script>
+    // 换成适合50岁女性的祝福语
     const messages = [
-        "祝姑婆健康", "长命百岁", "笑口常开", "福星高照", "万事大吉", "天天开心",
-        "身体硬朗", "岁岁平安", "吉祥如意", "福气满满", "心想事成", "合家欢乐",
-        "喜气洋洋", "心情舒畅", "松鹤长春", "晚年幸福", "❤️爱您❤️", "送您真心"
+        "永远年轻", "芳华永驻", "优雅从容", "心情舒畅", "笑口常开", "万事如意",
+        "天天开心", "岁岁平安", "越来越美", "生活甜蜜", "❤️爱您❤️", "顺心顺意",
+        "元气满满", "魅力无限", "温柔有光", "健康自在"
     ];
 
-    const numWindows = 45; // 45个窗口构成爱心轮廓
-    const heartSize = window.innerWidth / 35; // 适配手机屏幕
+    const numWindows = 40; 
+    const heartSize = window.innerWidth / 35;
     const audio = document.getElementById('bgm');
 
     function startExperience() {
-        // 1. 隐藏封面
         document.getElementById('overlay').style.display = 'none';
-        // 2. 播放音乐
-        audio.play().catch(e => {
-            console.log("音频播放受阻，请检查链接或权限");
-        });
-        // 3. 开始动画
+        audio.play().catch(e => console.log("Music blocked"));
         spawn(0);
     }
 
     function createHeartPoint(t) {
-        // 心形函数公式
         const x = 16 * Math.pow(Math.sin(t), 3);
         const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
-        return { x: x * heartSize, y: -y * heartSize - 50 };
+        return { x: x * heartSize, y: -y * heartSize - 40 };
     }
 
     function spawn(i) {
         if (i >= numWindows) {
-            // 所有弹窗结束后显示大卡片
             setTimeout(() => { 
                 document.getElementById('final-msg').style.display = 'block'; 
-                document.getElementById('final-msg').style.animation = 'pop 0.6s ease-out';
-            }, 800);
+            }, 600);
             return;
         }
 
@@ -88,23 +79,12 @@
         const pos = createHeartPoint(t);
         const win = document.createElement('div');
         win.className = 'window';
-        
-        // 计算位置使其居中
-        win.style.left = (window.innerWidth / 2 + pos.x - 47) + 'px';
-        win.style.top = (window.innerHeight / 2 + pos.y - 27) + 'px';
-        
-        win.innerHTML = `
-            <div class="title-bar">
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-            <div class="content">${messages[i % messages.length]}</div>
-        `;
-        
+        win.style.left = (window.innerWidth / 2 + pos.x - 50) + 'px';
+        win.style.top = (window.innerHeight / 2 + pos.y - 25) + 'px';
+        win.innerHTML = `<div class="title-bar"></div><div class="content">${messages[i % messages.length]}</div>`;
         document.body.appendChild(win);
 
-        // 调整弹出速度：250毫秒一个，节奏感最好
-        setTimeout(() => spawn(i + 1), 250);
+        setTimeout(() => spawn(i + 1), 200);
     }
 </script>
 </body>
